@@ -1,0 +1,41 @@
+<video style="height: 100%; width: 100%;border: 5px dotted red;"></video>
+
+<script>
+   navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
+
+	if (navigator.getUserMedia) {
+	   navigator.getUserMedia({ audio: true, video: { width: 1280, height: 720 } },
+	   // navigator.getUserMedia({ audio: true},
+	      function(stream) {
+	         var video = document.querySelector('video');
+	         video.srcObject = stream;
+	         video.onloadedmetadata = function(e) {
+	           video.play();
+	         };
+	      },
+	      function(err) {
+	         console.log("The following error occurred: " + err.name);
+	         if (err.name == 'NotFoundError') {
+	         	alert('Camera or Microphone are not founded');
+	         }
+	         if (err.name == 'NotAllowedError') {
+	         	alert('You should allow your Camera and Microphone');
+	         }
+	      }
+	   );
+	} else {
+	   console.log("getUserMedia not supported on your device");
+	}
+
+	// navigator.mediaDevices.getUserMedia({audio: true, video: true})
+	// navigator.mediaDevices.getUserMedia({audio: true})
+	// .then(mediaStream => {
+	//   document.querySelector('video').srcObject = mediaStream;
+
+	//   const track = mediaStream.getVideoTracks()[0];
+	//   var imageCapture = new ImageCapture(track);
+
+	//   return imageCapture.getPhotoCapabilities();
+	// })
+
+</script>
