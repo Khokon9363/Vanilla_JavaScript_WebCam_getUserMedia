@@ -1,5 +1,9 @@
 <video style="height: 100%; width: 100%;border: 5px dotted red;"></video>
-
+<script type="text/javascript">
+	document.addEventListener("contextmenu", function(e){
+	    e.preventDefault();
+	}, false);
+</script>
 <script>
    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia;
 
